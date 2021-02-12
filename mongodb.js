@@ -20,23 +20,51 @@ const databaseName ='task-manager'
 //         console.log(result.ops)
 //     })
 // })
-MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
-    if(error){
-        return console.log("Error connecting to databse")
+
+//inserting many
+// MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
+//     if(error){
+//         return console.log("Error connecting to databse")
+//     }
+//     const db=client.db(databaseName)
+//     db.collection('users').insertMany([
+//         {
+//             name:'manja',
+//             age:21
+//         },
+//         {
+//             name:'admin',
+//             age:23
+//         }
+//     ],(err,result)=>{
+//         if(err){
+//             return console.log("error inserting value")
+//         }
+//         console.log(result.ops)
+//     })
+// })
+//Inseting 3
+MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
+    if(err){
+        return console.log("Failed to connect to databse")
     }
     const db=client.db(databaseName)
-    db.collection('users').insertMany([
+    db.collection('tasks').insertMany([
         {
-            name:'manja',
-            age:21
+            description:'Clean the house',
+            completed:true
         },
         {
-            name:'admin',
-            age:23
+            description:'Renew insepection',
+            completed:false
+        },
+        {
+            description:'Pot plants',
+            completed: false
         }
     ],(err,result)=>{
         if(err){
-            return console.log("error inserting value")
+            return console.log("faield to insert")
         }
         console.log(result.ops)
     })
