@@ -6,5 +6,10 @@ MongoClient.connect(connectionURL,{useNewUrlParser : true} ,(error,client)=>{
     if(error){
         return console.log('Unable to connect to fatabase ',error)
     }
-    console.log("connected successsfully",client)
+    // console.log("connected successsfully",client)
+    const db=client.db(databaseName)
+    db.collection('users').insertOne({
+        name:'Manjunatha',
+        age:20
+    })
 })
