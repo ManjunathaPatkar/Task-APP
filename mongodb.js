@@ -102,4 +102,10 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
         }
         console.log(result)
     })
+    db.collection('users').find({ name: 'Manja Patkar' }).count((err, count) => {
+        if (err) {
+            console.log(err)
+        }
+        console.log(count)
+    })
 })
