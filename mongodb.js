@@ -96,16 +96,28 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
     //     }
     //     console.log(result)
     // })
-    db.collection('users').find({name:'Manja Patkar'}).toArray((err,result)=>{
+    // db.collection('users').find({name:'Manja Patkar'}).toArray((err,result)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }
+    //     console.log(result)
+    // })
+    // db.collection('users').find({ name: 'Manja Patkar' }).count((err, count) => {
+    //     if (err) {
+    //         console.log(err)
+    //     }
+    //     console.log(count)
+    // })
+    db.collection('tasks').findOne({ _id: new ObjectID("6026a521e1c5cf5ca2dad3ae")},(err,result)=>{
         if(err){
-            console.log(err)
+            return console.log("error")
         }
         console.log(result)
     })
-    db.collection('users').find({ name: 'Manja Patkar' }).count((err, count) => {
-        if (err) {
-            console.log(err)
+    db.collection('tasks').find({completed: false}).toArray((err,result)=>{
+        if(err){
+            return console.log("Error")
         }
-        console.log(count)
+        console.log(result)
     })
 })
