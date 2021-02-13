@@ -8,7 +8,8 @@
 const User = mongoose.model("User",{
     name:{
         type:String,
-        required:true
+        required:true,
+        default:'Anonymous'
     },
     age:{
         type:Number,
