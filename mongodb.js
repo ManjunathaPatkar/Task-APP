@@ -79,45 +79,65 @@ const ObjectID=mongodb.ObjectID
 //         console.log(result.ops)
 //     })
 // })
-MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
-    if(err){
-        return console.log("Connection error!!!")
+// MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
+//     if(err){
+//         return console.log("Connection error!!!")
+//     }
+//     const db=client.db(databaseName)
+//     // db.collection('users').findOne({name:'manja',age:21},(err,result)=>{
+//     //     if(err){
+//     //         return console.log("unable to fetch")
+//     //     }
+//     //     console.log(result)
+//     // })
+//     // db.collection('users').findOne({ _id: new ObjectID("602759c4c283c6686a5748db")},(err,result)=>{
+//     //     if(err){
+//     //         return console.log("unable to fetch")
+//     //     }
+//     //     console.log(result)
+//     // })
+//     // db.collection('users').find({name:'Manja Patkar'}).toArray((err,result)=>{
+//     //     if(err){
+//     //         console.log(err)
+//     //     }
+//     //     console.log(result)
+//     // })
+//     // db.collection('users').find({ name: 'Manja Patkar' }).count((err, count) => {
+//     //     if (err) {
+//     //         console.log(err)
+//     //     }
+//     //     console.log(count)
+//     // })
+//     db.collection('tasks').findOne({ _id: new ObjectID("6026a521e1c5cf5ca2dad3ae")},(err,result)=>{
+//         if(err){
+//             return console.log("error")
+//         }
+//         console.log(result)
+//     })
+//     db.collection('tasks').find({completed: false}).toArray((err,result)=>{
+//         if(err){
+//             return console.log("Error")
+//         }
+//         console.log(result)
+//     })
+// })
+MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
+    if(error){
+        return console.log("Error connecting")
     }
     const db=client.db(databaseName)
-    // db.collection('users').findOne({name:'manja',age:21},(err,result)=>{
-    //     if(err){
-    //         return console.log("unable to fetch")
-    //     }
-    //     console.log(result)
-    // })
-    // db.collection('users').findOne({ _id: new ObjectID("602759c4c283c6686a5748db")},(err,result)=>{
-    //     if(err){
-    //         return console.log("unable to fetch")
-    //     }
-    //     console.log(result)
-    // })
-    // db.collection('users').find({name:'Manja Patkar'}).toArray((err,result)=>{
-    //     if(err){
-    //         console.log(err)
-    //     }
-    //     console.log(result)
-    // })
-    // db.collection('users').find({ name: 'Manja Patkar' }).count((err, count) => {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    //     console.log(count)
-    // })
-    db.collection('tasks').findOne({ _id: new ObjectID("6026a521e1c5cf5ca2dad3ae")},(err,result)=>{
-        if(err){
-            return console.log("error")
+    const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("60275984342b316840c8cfc6")},
+    {
+        $set:{
+            name:'Ram'
         }
-        console.log(result)
+
     })
-    db.collection('tasks').find({completed: false}).toArray((err,result)=>{
-        if(err){
-            return console.log("Error")
-        }
-        console.log(result)
-    })
+        updatePromise.then((result) => {
+            console.log(result)
+        }).catch((err)=>{
+            console.log(err)
+        })
+  
+
 })
