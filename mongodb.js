@@ -84,7 +84,7 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
         return console.log("Connection error!!!")
     }
     const db=client.db(databaseName)
-    db.collection('users').findOne({name:'jen'},(err,result)=>{
+    db.collection('users').findOne({name:'manja',age:21},(err,result)=>{
         if(err){
             return console.log("unable to fetch")
         }
