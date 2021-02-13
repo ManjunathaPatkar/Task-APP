@@ -2,7 +2,16 @@ const mongodb=require('mongodb')
 const MongoClient=mongodb.MongoClient
 const connectionURL ='mongodb://127.0.0.1:27017'
 const databaseName ='task-manager'
+const ObjectID=mongodb.ObjectID
 
+const id=new ObjectID()
+console.log(id)
+console.log(id.getTimestamp())
+
+console.log(id.id)
+console.log(id.id.length )
+
+console.log(id.toHexString().length)
 
 // MongoClient.connect(connectionURL,{ useNewUrlParser:true},(err,client)=>{
 //     if(err){
@@ -10,9 +19,10 @@ const databaseName ='task-manager'
 //     }
 //     const db=client.db(databaseName)
 
+
 //     db.collection('users').insertOne({
-//         name:'Manjunatha Patkar',
-//         age:21
+//         name:'Manja Patkar',
+//         age:22
 //     },(err,result)=>{
 //         if(err){
 //             return console.log("error while inserting")
@@ -44,28 +54,28 @@ const databaseName ='task-manager'
 //     })
 // })
 //Inseting 3
-MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
-    if(err){
-        return console.log("Failed to connect to databse")
-    }
-    const db=client.db(databaseName)
-    db.collection('tasks').insertMany([
-        {
-            description:'Clean the house',
-            completed:true
-        },
-        {
-            description:'Renew insepection',
-            completed:false
-        },
-        {
-            description:'Pot plants',
-            completed: false
-        }
-    ],(err,result)=>{
-        if(err){
-            return console.log("faield to insert")
-        }
-        console.log(result.ops)
-    })
-})
+// MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
+//     if(err){
+//         return console.log("Failed to connect to databse")
+//     }
+//     const db=client.db(databaseName)
+//     db.collection('tasks').insertMany([
+//         {
+//             description:'Clean the house',
+//             completed:true
+//         },
+//         {
+//             description:'Renew insepection',
+//             completed:false
+//         },
+//         {
+//             description:'Pot plants',
+//             completed: false
+//         }
+//     ],(err,result)=>{
+//         if(err){
+//             return console.log("faield to insert")
+//         }
+//         console.log(result.ops)
+//     })
+// })
