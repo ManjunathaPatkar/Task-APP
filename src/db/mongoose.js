@@ -4,4 +4,20 @@
      useCreateIndex:true
  })
 
- 
+const User = mongoose.model("User",{
+    name:{
+        type:String
+    },
+    age:{
+        type:Number
+    }
+})
+const me=new User({
+    name:"Manja",
+    age:21
+})
+me.save().then((me)=>{
+    console.log(me)
+}).catch((err)=>{
+    console.log(err)
+})
