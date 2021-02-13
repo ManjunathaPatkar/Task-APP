@@ -121,22 +121,40 @@ const ObjectID=mongodb.ObjectID
 //         console.log(result)
 //     })
 // })
-MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
-    if(error){
+// MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
+//     if(error){
+//         return console.log("Error connecting")
+//     }
+//     const db=client.db(databaseName)
+//     db.collection('users').updateOne({ _id: new ObjectID("60275984342b316840c8cfc6")},
+//     {
+//         $set:{
+//             name:'Ram'
+//         }
+
+//     }).then((result) => {
+//             console.log(result)
+//         }).catch((err)=>{
+//             console.log(err)
+//         })
+  
+
+// })
+MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
+    if(err)
+    {
         return console.log("Error connecting")
     }
     const db=client.db(databaseName)
-    db.collection('users').updateOne({ _id: new ObjectID("60275984342b316840c8cfc6")},
-    {
-        $set:{
-            name:'Ram'
-        }
-
-    }).then((result) => {
-            console.log(result)
-        }).catch((err)=>{
-            console.log(err)
-        })
-  
-
+    db.collection('users').updateOne(
+        { _id: new ObjectID("60275984342b316840c8cfc6")},
+       {
+           $inc:{
+                age:1
+           }
+       } ).then((result) => {
+           console.log(result)
+       }).catch((err)=>{
+           console.log(err);
+       })
 })
