@@ -2,7 +2,7 @@ const mongodb=require('mongodb')
 const MongoClient=mongodb.MongoClient
 const connectionURL ='mongodb://127.0.0.1:27017'
 const databaseName ='task-manager'
-// const ObjectID=mongodb.ObjectID
+const ObjectID=mongodb.ObjectID
 
 // const id=new ObjectID()
 // console.log(id)
@@ -84,7 +84,13 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
         return console.log("Connection error!!!")
     }
     const db=client.db(databaseName)
-    db.collection('users').findOne({name:'manja',age:21},(err,result)=>{
+    // db.collection('users').findOne({name:'manja',age:21},(err,result)=>{
+    //     if(err){
+    //         return console.log("unable to fetch")
+    //     }
+    //     console.log(result)
+    // })
+    db.collection('users').findOne({ _id: new ObjectID("602759c4c283c6686a5748db")},(err,result)=>{
         if(err){
             return console.log("unable to fetch")
         }
