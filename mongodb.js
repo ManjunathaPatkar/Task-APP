@@ -126,14 +126,13 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
         return console.log("Error connecting")
     }
     const db=client.db(databaseName)
-    const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("60275984342b316840c8cfc6")},
+    db.collection('users').updateOne({ _id: new ObjectID("60275984342b316840c8cfc6")},
     {
         $set:{
             name:'Ram'
         }
 
-    })
-        updatePromise.then((result) => {
+    }).then((result) => {
             console.log(result)
         }).catch((err)=>{
             console.log(err)
