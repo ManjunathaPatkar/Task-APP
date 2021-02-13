@@ -90,9 +90,15 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
     //     }
     //     console.log(result)
     // })
-    db.collection('users').findOne({ _id: new ObjectID("602759c4c283c6686a5748db")},(err,result)=>{
+    // db.collection('users').findOne({ _id: new ObjectID("602759c4c283c6686a5748db")},(err,result)=>{
+    //     if(err){
+    //         return console.log("unable to fetch")
+    //     }
+    //     console.log(result)
+    // })
+    db.collection('users').find({name:'Manja Patkar'}).toArray((err,result)=>{
         if(err){
-            return console.log("unable to fetch")
+            console.log(err)
         }
         console.log(result)
     })
