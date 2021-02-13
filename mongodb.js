@@ -79,9 +79,15 @@ const databaseName ='task-manager'
 //         console.log(result.ops)
 //     })
 // })
-MongoClient.connect(connectionURI,{useNewUrlParser:true},(err,client)=>{
+MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
     if(err){
         return console.log("Connection error!!!")
     }
     const db=client.db(databaseName)
+    db.collection('users').findOne({name:'manja'},(err,result)=>{
+        if(err){
+            return console.log("unable to fetch")
+        }
+        console.log(result)
+    })
 })
