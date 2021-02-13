@@ -4,38 +4,44 @@
      useCreateIndex:true
  })
 
-// const User = mongoose.model("User",{
-//     name:{
-//         type:String
-//     },
-//     age:{
-//         type:Number
-//     }
-// })
-// const me=new User({
-//     name:"Manja",
-//     age:21
-// })
-// me.save().then((me)=>{
-//     console.log(me)
-// }).catch((err)=>{
-//     console.log(err)
-// })
-
-const Task=mongoose.model('Tasks',{
-    description:{
-        type:String
+const User = mongoose.model("User",{
+    name:{
+        type:String,
+        required:true
     },
-    completed:{
-        type:Boolean
+    age:{
+        type:Number,
+        validate(value){
+            if(value<0){
+                throw new Error("Age cannot be negative")
+            }
+        }
     }
 })
-const me=new Task({
-    description:"clean macbook its avvvv dusty",
-    completed:false
+const me=new User({
+    name:"Manja",
+    age:-2
 })
 me.save().then((me)=>{
     console.log(me)
 }).catch((err)=>{
     console.log(err)
 })
+
+// const Task=mongoose.model('Tasks',{
+//     description:{
+//         type:String
+//     },
+//     completed:{
+//         type:Boolean
+//     }
+// })
+// const me=new Task({
+//     description:"clean macbook its avvvv dusty",
+//     completed:false
+// })
+// me.save().then((me)=>{
+//     console.log(me)
+// }).catch((err)=>{
+//     console.log(err)
+// })
