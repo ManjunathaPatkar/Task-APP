@@ -178,14 +178,27 @@ const ObjectID=mongodb.ObjectID
 //         console.log(err)
 //     })
 // })
-MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
-    if(err){
-        return console.log("Error")
+// MongoClient.connect(connectionURL,{useNewUrlParser:true},(err,client)=>{
+//     if(err){
+//         return console.log("Error")
+//     }
+//     const db=client.db(databaseName)
+//     db.collection('users').deleteMany({age:23}).then((result) => {
+//         console.log(result)
+//     }).catch((error)=>{
+//         console.log(error)
+//     })
+// })
+MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
+    if(error){
+        return console.log(error)
     }
     const db=client.db(databaseName)
-    db.collection('users').deleteMany({age:23}).then((result) => {
+    db.collection('tasks').deleteOne({
+        description:'Pot plants'
+    }).then((result)=>{
         console.log(result)
-    }).catch((error)=>{
-        console.log(error)
+    }).catch((err)=>{
+        console.log(err)
     })
 })
