@@ -9,10 +9,12 @@ const User = mongoose.model("User",{
     name:{
         type:String,
         required:true,
-        default:'Anonymous'
+        default:'Anonymous',
+        trim:true
     },
     age:{
         type:Number,
+        default:0,
         validate(value){
             if(value<0){
                 throw new Error("Age cannot be negative")
@@ -22,6 +24,8 @@ const User = mongoose.model("User",{
     email:{
         type:String,
         required:true,
+        trim:true,
+        lowercase:true,
         validate(value){
             if(!validator.isEmail(value)){
                 throw new Error("Email invalid")
