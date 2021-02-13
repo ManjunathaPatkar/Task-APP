@@ -2,16 +2,16 @@ const mongodb=require('mongodb')
 const MongoClient=mongodb.MongoClient
 const connectionURL ='mongodb://127.0.0.1:27017'
 const databaseName ='task-manager'
-const ObjectID=mongodb.ObjectID
+// const ObjectID=mongodb.ObjectID
 
-const id=new ObjectID()
-console.log(id)
-console.log(id.getTimestamp())
+// const id=new ObjectID()
+// console.log(id)
+// console.log(id.getTimestamp())
 
-console.log(id.id)
-console.log(id.id.length )
+// console.log(id.id)
+// console.log(id.id.length )
 
-console.log(id.toHexString().length)
+// console.log(id.toHexString().length)
 
 // MongoClient.connect(connectionURL,{ useNewUrlParser:true},(err,client)=>{
 //     if(err){
@@ -79,3 +79,9 @@ console.log(id.toHexString().length)
 //         console.log(result.ops)
 //     })
 // })
+MongoClient.connect(connectionURI,{useNewUrlParser:true},(err,client)=>{
+    if(err){
+        return console.log("Connection error!!!")
+    }
+    const db=client.db(databaseName)
+})
