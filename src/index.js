@@ -15,7 +15,7 @@ app.use(express.json())
 app.post('/users',(req,res)=>{
     const user=new User(req.body)
     user.save().then((user)=>{
-        res.send(user)
+        res.status(201).send(user)
     }).catch((err)=>{
         res.status(404).send(err)
     })
@@ -25,7 +25,7 @@ app.post('/users',(req,res)=>{
 app.post('/tasks',(req,res)=>{
     const task=new Task(req.body)
     task.save().then((task)=>{
-        res.send(task)
+        res.status(201).send(task)
     }).catch((err)=>{
         res.status(404).send(err)
     })
