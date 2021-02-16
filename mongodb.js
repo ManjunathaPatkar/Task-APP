@@ -189,16 +189,16 @@ const ObjectID=mongodb.ObjectID
 //         console.log(error)
 //     })
 // })
-MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
-    if(error){
-        return console.log(error)
-    }
-    const db=client.db(databaseName)
-    db.collection('tasks').deleteOne({
-        description:'Pot plants'
-    }).then((result)=>{
-        console.log(result)
-    }).catch((err)=>{
-        console.log(err)
-    })
-})
+// MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
+//     if(error){
+//         return console.log(error)
+//     }
+//     const db=client.db(databaseName)
+//     db.collection('tasks').deleteOne({
+//         description:'Pot plants'
+//     }).then((result)=>{
+//         console.log(result)
+//     }).catch((err)=>{
+//         console.log(err)
+//     })
+// })

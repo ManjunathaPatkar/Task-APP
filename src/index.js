@@ -22,6 +22,14 @@ app.post('/users',(req,res)=>{
     
 })
 
+app.get('/Users',(req,res)=>{
+    User.find({}).then((users)=>{
+        res.send(users)
+    }).catch((err)=>{
+        res.status(404).send(err)
+    })
+})
+
 app.post('/tasks',(req,res)=>{
     const task=new Task(req.body)
     task.save().then((task)=>{
