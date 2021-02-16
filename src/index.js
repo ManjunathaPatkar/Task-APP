@@ -22,7 +22,7 @@ app.post('/users',(req,res)=>{
     
 })
 
-app.get('/Users',(req,res)=>{
+app.get('/users',(req,res)=>{
     User.find({}).then((users)=>{
         res.send(users)
     }).catch((err)=>{
