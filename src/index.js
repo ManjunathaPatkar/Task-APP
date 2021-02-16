@@ -33,9 +33,12 @@ app.get('/users',(req,res)=>{
 app.get('/users/:id',(req,res)=>{
     const id=req.params.id
     User.findById(id).then((user)=>{
+        if(!user){
+            return res.status(404).send()
+        }
         res.send(user)
     }).catch((err)=>{
-        res.status(404).send(err)
+        res.status(500).send()
     })
 })
 
@@ -44,7 +47,7 @@ app.post('/tasks',(req,res)=>{
     task.save().then((task)=>{
         res.status(201).send(task)
     }).catch((err)=>{
-        res.status(404).send(err)
+        res.status(404).send()
     })
 })
 
