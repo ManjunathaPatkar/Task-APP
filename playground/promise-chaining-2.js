@@ -12,12 +12,12 @@ const Task=require("../src/models/task")
 //     console.log(err)
 // })
 
-const DeleteAndCount=async (id,completed)=>{
+const deleteTaskAndCount=async (id,completed)=>{
     const task=await Task.findByIdAndDelete(id)
     const count=await Task.countDocuments({completed})
     return count
 }
-DeleteAndCount('602a98347e8fcc216cefa872',false).then((count)=>{
+deleteTaskAndCount('602a98347e8fcc216cefa872',false).then((count)=>{
     console.log(count)
 }).catch((err)=>{
     console.log(err)
