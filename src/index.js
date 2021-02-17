@@ -69,16 +69,18 @@ app.get('/tasks',async(req,res)=>{
     }
 })
 
-app.get('/tasks/:id',(req,res)=>{
+app.get('/tasks/:id',async(req,res)=>{
     const id=req.params.id
-    Task.findById(id).then((task)=>{
+    try{
+        const task=await Task.findById(id)
         if(!task){
             return res.status(404).send()
         }
         res.send(task)
-    }).catch((err)=>{
+    }
+    catch(err){
         res.status(500).send()
-    })
+    }
 })
 
 app.listen(port,()=>{
