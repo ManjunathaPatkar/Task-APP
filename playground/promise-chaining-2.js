@@ -10,3 +10,4 @@ Task.findByIdAndDelete('602a9c369767ef24d449489f').then((task)=>{
 }).catch((err)=>{
     console.log(err)
 })
+
