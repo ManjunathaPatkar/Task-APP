@@ -46,23 +46,17 @@ app.get('/users/:id',async (req,res)=>{
     catch(err){
         res.status(500).send()
     }
-    // User.findById(id).then((user)=>{
-    //     if(!user){
-    //         return res.status(404).send()
-    //     }
-    //     res.send(user)
-    // }).catch((err)=>{
-    //     res.status(500).send()
-    // })
 })
 
-app.post('/tasks',(req,res)=>{
+app.post('/tasks',async(req,res)=>{
     const task=new Task(req.body)
-    task.save().then((task)=>{
+    try{
+        await task.save()
         res.status(201).send(task)
-    }).catch((err)=>{
+    }
+    catch(err){
         res.status(404).send()
-    })
+    }
 })
 
 app.get('/tasks',(req,res)=>{
