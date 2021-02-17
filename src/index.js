@@ -33,16 +33,27 @@ app.get('/users',async (req,res)=>{
     }
 })
 
-app.get('/users/:id',(req,res)=>{
+app.get('/users/:id',async (req,res)=>{
     const id=req.params.id
-    User.findById(id).then((user)=>{
+    try
+    {
+        const user=await User.findById(id)
         if(!user){
             return res.status(404).send()
         }
         res.send(user)
-    }).catch((err)=>{
+    }
+    catch(err){
         res.status(500).send()
-    })
+    }
+    // User.findById(id).then((user)=>{
+    //     if(!user){
+    //         return res.status(404).send()
+    //     }
+    //     res.send(user)
+    // }).catch((err)=>{
+    //     res.status(500).send()
+    // })
 })
 
 app.post('/tasks',(req,res)=>{
