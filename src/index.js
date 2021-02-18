@@ -141,6 +141,19 @@ app.delete("/users/:id",async(req,res)=>{
     }
 })
 
+app.delete("/tasks/:id",async(req,res)=>{
+    try{
+        const task = await Task.findByIdAndDelete(req.params.id)
+        if(!task){
+            res.status(404).send()
+        }
+        res.send(task)
+    }
+    catch(err){
+        res.status(400).send()
+    }
+})
+
 app.listen(port,()=>{
     console.log("Server is up on "+port)
 })
