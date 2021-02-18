@@ -83,6 +83,19 @@ app.get('/tasks/:id',async(req,res)=>{
     }
 })
 
+app.patch('/users/:id', async(req,res)=>{
+    try {
+        const user=await User.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true})
+        // if(!user){
+        //     res.status(404).send()
+        // }
+        res.send(user)
+    }
+    catch(err){
+        res.status(400).send()
+    }
+})
+
 app.listen(port,()=>{
     console.log("Server is up on "+port)
 })
