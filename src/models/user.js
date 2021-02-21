@@ -42,6 +42,18 @@ const Userschema = mongoose.Schema({
     }
 })
 
+Userschema.static.findByCredentials=async(email, password)=>{
+    const user=await User.findOne({email})
+    if(!user){
+        throw new Error("unable to login")
+    }
+    const isMatched=bcrypt.compare(password,user.password)
+    if(!isMatched){
+        throw new Error("unable to login")
+    }
+    return user
+}
+
 Userschema.pre('save',async function(next){
     const user=this
     // console.log('just before saving')
@@ -50,6 +62,8 @@ Userschema.pre('save',async function(next){
     }
     next()
 })
+
+
 
 const User = mongoose.model("User", Userschema)
 module.exports=User
